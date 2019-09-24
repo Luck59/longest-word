@@ -14,19 +14,24 @@ class TestGame(unittest.TestCase):
 
     def test_game_isvalid(self):
         new_game = Game()
-        new_game.grid = ["L","A","G","E","S","P"]
+        new_game.grid = ["K","W","I","E","N","F", "U", "Q", "W"]
         grid = new_game.grid
-        self.assertIs(True, new_game.is_valid("PLAGES"))
+        self.assertIs(True, new_game.is_valid("FEUN"))
 
 
 
     def test_game_isinvalid(self):
         new_game = Game()
-        new_game.grid = ["L","T","G","E","S","P"]
+        new_game.grid = ["K","W","I","E","N","F", "U", "Q", "W"]
         grid = new_game.grid
-        self.assertIs(False, new_game.is_valid("PLAGES"))
+        self.assertIs(False, new_game.is_valid("FAUN"))
 
     def test_empty_word_is_invalid(self):
         new_game = Game()
         self.assertIs(new_game.is_valid(''), False)
+
+    def test_unknown_word_is_invalid(self):
+      new_game = Game()
+      new_game.grid = list('KWIENFUQW') # Force the grid to a test case:
+      self.assertIs(new_game.is_valid('FEUN'), False)
 
